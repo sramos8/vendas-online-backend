@@ -3,7 +3,8 @@ import { MigrationInterface, QueryRunner } from "typeorm";
 export class CreateTableCity1776264320179 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.query(`CREATE TABLE public."city" (
+        queryRunner.query(`
+            CREATE TABLE public."city" (
             id integer NOT NULL,
             state_id integer NOT NULL,
             name character varying NOT NULL,
@@ -11,7 +12,7 @@ export class CreateTableCity1776264320179 implements MigrationInterface {
             updated_at timestamp with time zone NOT NULL DEFAULT now(),
             primary key(id),
             foreign key(state_id) references public."state"(id)
-        )
+        );
         CREATE SEQUENCE public."city_id_seq"
         AS integer
         START WITH 1
