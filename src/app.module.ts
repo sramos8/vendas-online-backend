@@ -4,6 +4,8 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserEntity } from './user/interfaces/user.entity';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,9 +18,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: process.env.DB_PASSWORD,
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
-    })
-    ,UserModule,],
-  controllers: [UserController],
-  providers: [UserService],
+      synchronize: true,
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    }),
+    UserModule,
+  ],
 })
 export class AppModule {}
