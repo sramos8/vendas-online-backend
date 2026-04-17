@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "163.176.227.18",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "vendas",
+            "database": "venda",
+            "username": "postgres",
+            "password": "mysecretpassword"
+        }
+    ]
+}
