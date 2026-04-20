@@ -1,0 +1,21 @@
+import { Controller, Param, Post } from '@nestjs/common';
+import { CreateAddressDto } from './dtos/createAddress.dto';
+import { UsePipes, ValidationPipe } from '@nestjs/common';
+import { AddressService } from './address.service';
+import { AddressEntity } from './entities/address.entity';
+
+
+@Controller('address')
+export class AddressController {
+
+    constructor(private readonly addressService: AddressService) {}
+
+    @Post('/:userId')
+    @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
+    async createAddress(
+        createAddressDto: CreateAddressDto, 
+        @Param('userId') userId: number
+    ): Promise<AddressEntity> {
+        return this.addressService.createAddress(createAddressDto, userId);
+    }
+}
