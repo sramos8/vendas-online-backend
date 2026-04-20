@@ -1,4 +1,4 @@
-import { Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post } from '@nestjs/common';
 import { CreateAddressDto } from './dtos/createAddress.dto';
 import { UsePipes, ValidationPipe } from '@nestjs/common';
 import { AddressService } from './address.service';
@@ -13,7 +13,7 @@ export class AddressController {
     @Post('/:userId')
     @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
     async createAddress(
-        createAddressDto: CreateAddressDto, 
+        @Body() createAddressDto: CreateAddressDto, 
         @Param('userId') userId: number
     ): Promise<AddressEntity> {
         return this.addressService.createAddress(createAddressDto, userId);

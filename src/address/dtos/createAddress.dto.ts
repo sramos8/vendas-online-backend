@@ -12,7 +12,7 @@ export class CreateAddressDto {
     @IsString()
     cep!: string;
 
-    @IsString()
-    cityId!: string;
+    @IsInt()
+    cityId!: number;
 
 }
