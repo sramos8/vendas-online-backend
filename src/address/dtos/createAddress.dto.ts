@@ -1,5 +1,4 @@
 import { IsInt, IsOptional, IsString } from "class-validator";
-import { Timestamp } from "typeorm";
 
 export class CreateAddressDto {
     @IsString()
