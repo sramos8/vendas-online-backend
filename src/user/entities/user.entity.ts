@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { AddressEntity } from "../../address/entities/address.entity";
 import { CityEntity } from "../../city/entities/city.entity";
+import { StateEntity } from "../../state/entities/state.entity";
 
 
 @Entity({ name: 'user'})
@@ -34,4 +35,8 @@ export class UserEntity {
 
     @OneToMany(() => AddressEntity, (Address) => Address.user)
     city!: CityEntity;
+
+    @OneToMany(() => StateEntity, (State) => State.cities)
+    state!: StateEntity[];
+
 }

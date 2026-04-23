@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { AddressEntity } from "../../address/entities/address.entity";
 import { StateEntity } from "../../state/entities/state.entity";
 
@@ -24,7 +24,7 @@ export class CityEntity {
     @OneToMany(() => AddressEntity, (address) => address.city)
     addresses!: AddressEntity[];
 
-    @ManyToMany(() => StateEntity, (state) => state.cities)
+    @ManyToOne(() => StateEntity, (state) => state.cities)
     @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
-    state!: StateEntity[];
+    state?: StateEntity;
 }
