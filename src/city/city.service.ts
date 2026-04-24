@@ -28,8 +28,9 @@ export class CityService {
     }
 
     async findCityById(cityId: number): Promise<CityEntity> {
-        const city = await this.cityRepository.findOneBy({ 
-            id: cityId });
+        const city = await this.cityRepository.findOne({ 
+            where: { id: cityId }
+        });
         if (!city) {
             throw new NotFoundException(`Cidade com id ${cityId} Não encontrada`);
         }
